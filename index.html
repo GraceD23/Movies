@@ -1,0 +1,19 @@
+---
+layout: default
+title: Home
+---
+<section class="grid">
+  {% assign items = site.reviews | sort: "date" | reverse %}
+  {% for r in items %}
+    <a class="card" href="{{ r.url }}">
+      <img class="poster" src="{{ r.poster }}" alt="{{ r.title }} poster">
+      <div class="card-body">
+        <div class="movie-title">{{ r.title }}{% if r.year %} ({{ r.year }}){% endif %}</div>
+        <div class="stars">{% include stars.html rating=r.rating %}</div>
+        <div class="review-snippet">
+          {{ r.content | strip_html | truncate: 100 }}
+        </div>
+      </div>
+    </a>
+  {% endfor %}
+</section>
